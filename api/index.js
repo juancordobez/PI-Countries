@@ -19,10 +19,32 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-
+const { Country, Actividad } = require('./src/db.js');
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
+  server.listen(3001, async () => {
+
+    // const country = await Country.create({
+    //   id: 'asd',
+    //   name: 'Prueba',
+    //   imagen: 'https://vimeo.com/user/112886970/folder/4311510',
+    //   continentes: 'americas',
+    //   capital: 'capital',
+    // })
+
+    await Actividad.create({
+      name: 'Prueba Actividad',
+      dificultad: 3,
+      duracion: 2,
+      temporada: 'Invierno',
+    })
+    
+    // country.addActividad(actividad)
+
+    
+    
+
     console.log('%s listening at 3001'); // eslint-disable-line no-console
+
   });
 });
