@@ -12,7 +12,7 @@ export const DETALLE_COUNTRY = 'DETALLE_COUNTRY';
 export function getAllCountrys(){
     return async function (dispatch) {
     try{
-        let request = await fetch(`http://localhost:3001/countrys`);
+        let request = await fetch(`http://localhost:3001/countries`);
         let data = await request.json()
         dispatch({type: ALL_COUTRYS, payload: data})
     }
@@ -25,12 +25,12 @@ export function getAllCountrys(){
 export function getNameCountrys(name){
     return async function (dispatch) {
     try{
-        let request = await fetch(`http://localhost:3001/countrys?name=${name}`)
+        let request = await fetch(`http://localhost:3001/countries?name=${name}`)
         let data = await request.json()
 
         dispatch({type: NAME_COUTRYS, payload: data})
     }catch(err){
-        console.log(err)
+        console.log(NAME_COUTRYS, err)
     }
     } 
 }
@@ -59,7 +59,7 @@ export function orden(valor, decendente){
 export function getDetalleCountry(id){
     return async function (dispatch) {
         try{
-            let request = await fetch(`http://localhost:3001/countrys/${id}`)
+            let request = await fetch(`http://localhost:3001/countries/${id}`)
             let data = await request.json()
             dispatch({
                 type: DETALLE_COUNTRY, 
@@ -82,7 +82,7 @@ export function filrer(prop, valor) {
 
 
 export function setPage(payload) {
-    console.log(payload)
+    // console.log(payload)
     return {
         type: PAGE,
         payload

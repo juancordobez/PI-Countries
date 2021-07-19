@@ -4,12 +4,10 @@ const { Country, Actividad } = require('../db');
 const fetch = require('node-fetch');
 
 
-const countryFindAll = async (offset=0, limit=10) => {
+const countryFindAll = async () => {
 
     let countries = await Country.findAll({
-        attributes: [ 'ID', 'nombre', 'bandera', 'continente', 'poblacion' ],
-        offset,
-        limit
+        attributes: [ 'ID', 'nombre', 'bandera', 'continente', 'poblacion' ]
     });
 
     if(!countries.length){
@@ -33,9 +31,7 @@ const countryFindAll = async (offset=0, limit=10) => {
         await Country.bulkCreate(all);
 
         countries = await Country.findAll({
-            attributes: [ 'ID', 'nombre', 'bandera', 'continente', 'poblacion' ],
-            offset,
-            limit
+            attributes: [ 'ID', 'nombre', 'bandera', 'continente', 'poblacion' ]
         });
     }
     return countries
@@ -64,6 +60,7 @@ const nameFind = async ( name ) => {
             }
         }
     })
+    console.log(country);
     return country
 }
 

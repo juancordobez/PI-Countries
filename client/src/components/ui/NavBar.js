@@ -6,13 +6,13 @@ export const NavBar = () => {
         <nav>
           <ul>
             <li>
-              <NavLink to="/principal" activeClassName>Principal</NavLink>
+              <NavLink to="/principal" activeClassName='active'>Principal</NavLink>
             </li>
             <li>
-              <NavLink to="/actividad" activeClassName>Actividad</NavLink>
+              <NavLink to="/actividad" activeClassName='active'>Actividad</NavLink>
             </li>
             <li>
-              <NavLink to="/about" activeClassName>About</NavLink>
+              <NavLink to="/about" activeClassName='active'>About</NavLink>
             </li>
           </ul>
         </nav>

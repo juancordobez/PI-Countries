@@ -12,37 +12,39 @@ export const PrincipalScreen = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch( getAllCountrys() )
-        
+        dispatch(getAllCountrys())
+
     }, [dispatch])
 
     useEffect(() => {
-        dispatch( setPage(1) )
+        dispatch(setPage(1))
     }, [dispatch, allCountrys])
 
     const handleChange = (e) => {
-        setCiudad({ ciudad: e.target.value });
+        console.log(e.target.value);
+        setCiudad(e.target.value);
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        getNameCountrys(ciudad)
+        console.log(ciudad);
+        dispatch(getNameCountrys(ciudad))
     }
 
     return (
         <>
             <form onSubmit={(e) => handleSubmit(e)}>
-                <input 
-                    type='text' 
-                    placeholder='Ciudad...' 
-                    name='buscar' 
-                    id="ciudad"
+                <input
+                    type='text'
+                    placeholder='Ciudad...'
+                    name='buscar'
+                    id="searchCiudad"
                     autoComplete="off"
                     value={ciudad}
                     onChange={(e) => handleChange(e)}
                 />
                 <input type='submit' value='Buscar' />
             </form>
-            <form>
+            {/* <form>
                 <select name="continentes">
                     <option value="value1" selected>All continents</option>
                     <option value="value2" >Value 2</option>
@@ -59,19 +61,19 @@ export const PrincipalScreen = () => {
                     <option value="value3">Value 3</option>
                 </select>
                 <input type='submit' value='Buscar' />
-            </form>
+            </form> */}
             <div>
-            {
-                currentPage.map( x => 
-                    <Link to={`detalle/${x.id}`}>
-                    <div>
-                        <img src={x.bandera} alt={`bandera de ${x.nombre}`} />
-                        <h4>{x.nombre}</h4>
-                        <h5>{x.continente}</h5>
-                    </div>
-                </Link>
-                )
-            }
+                {
+                    currentPage.map(x =>
+                        <Link to={`detalle/${x.ID}`} key={x.ID}>
+                            <div>
+                                <img src={x.bandera} alt={`bandera de ${x.nombre}`} />
+                                <h4>{x.nombre}</h4>
+                                <h5>{x.continente}</h5>
+                            </div>
+                        </Link>
+                    )
+                }
                 {/* <Link to={`detalle/${'COL'}`}>
                     <div>
                         <img src={'https://restcountries.eu/data/col.svg'} alt={`bandera de ${'nombre'}`} />
