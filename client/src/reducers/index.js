@@ -1,9 +1,11 @@
-export const ALL_COUTRYS = 'ALL_COUTRYS';
-export const NAME_COUTRYS = 'NAME_COUTRYS';
-export const ORDEN = 'ORDEN';
-export const FILTER = 'FILTER';
-export const PAGE = 'PAGE';
-export const DETALLE_COUNTRY = 'DETALLE_COUNTRY';
+import {
+    ALL_COUTRYS,
+    NAME_COUTRYS,
+    ORDEN,
+    FILTER,
+    PAGE,
+    DETALLE_COUNTRY,
+} from '../actions/index'
 
 const initialState = {
     allCountrys: [],
@@ -32,15 +34,7 @@ function rootReducer(state = initialState, { type, payload }) {
         case ORDEN:
             let x = 1
             if (payload.decendente) x = -1
-            const compare = (a, b) => {
-                if (a[payload.valor] > b[payload.valor]) {
-                    return 1 * x;
-                }
-                if (a[payload.valor] < b[payload.valor]) {
-                    return -1 * x;
-                }
-                return 0;
-            }
+            const compare = (a, b) => a[payload.valor] > b[payload.valor] ? 1 * x : -1 * x 
             return { 
                 ...state, 
                 allCountrys: state.allCountrys.sort(compare)    

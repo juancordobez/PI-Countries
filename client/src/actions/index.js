@@ -1,3 +1,6 @@
+const fetch = require('node-fetch');
+
+
 export const ALL_COUTRYS = 'ALL_COUTRYS';
 export const NAME_COUTRYS = 'NAME_COUTRYS';
 export const ORDEN = 'ORDEN';
@@ -5,7 +8,6 @@ export const FILTER = 'FILTER';
 export const PAGE = 'PAGE';
 export const DETALLE_COUNTRY = 'DETALLE_COUNTRY';
 
-const fetch = require('node-fetch');
 
 export function getAllCountrys(){
     return async function (dispatch) {
@@ -20,7 +22,7 @@ export function getAllCountrys(){
     } 
 }
 
-export function getNameCountrs(name){
+export function getNameCountrys(name){
     return async function (dispatch) {
     try{
         let request = await fetch(`http://localhost:3001/countrys?name=${name}`)
