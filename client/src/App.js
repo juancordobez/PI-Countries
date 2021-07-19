@@ -19,7 +19,7 @@ function App() {
         <NavBar/>
         <Switch>
           <Route path="/principal" component={PrincipalScreen} />
-          <Route path="/detalle" component={DetalleScreen} />
+          <Route path="/detalle/:idPais" component={DetalleScreen} />
           <Route path="/actividad" component={ActividadScreen} />
           <Route path="/about" component={AboutScreen} />
           <Redirect to='/' />
