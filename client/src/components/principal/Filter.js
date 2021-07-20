@@ -8,43 +8,47 @@ export const Filter = () => {
 
     const actividades = useSelector(state => state.actividades);
     // const allCountrys = useSelector(state => state.allCountrys)
-    const [state, setstate] = useState(initialState)
-    
-    
+    // const [state, setstate] = useState(initialState)
+
+
     // const [ciudad, setCiudad] = useState('')
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch( getActividades() )
+        dispatch(getActividades())
     }, [dispatch])
 
 
     return (
-        <form>
-            <select name="orden" defaultValue='value1'>
-                <option value="value1" >Nombre A-Z</option>
-                <option value="value2" >Nombre A-Z</option>
-                <option value="value3">Poblacion Acendente</option>
-                <option value="value3">Poblacion Decendente</option>
-            </select>
+        <div>
 
-            <select name="continente" defaultValue='All'>
-                <option value="All" >All continents</option>
-                <option value="Africa" >Africa</option>
-                <option value="Americas">Americas</option>
-                <option value="Asia">Asia</option>
-                <option value="Europe">Europe</option>
-                <option value="Oceania">Oceania</option>
-                <option value="Polar">Polar</option>
-            </select>
-            <select name="actividad" defaultValue='All'>
-            <option value="All" >All activities</option>
+            <form>
+                <select name="orden" defaultValue={['nombre', false]}>
+                    <option value={['nombre', false]} >Nombre A-Z</option>
+                    <option value={['nombre', true]} >Nombre A-Z</option>
+                    <option value={['poblacion', false]}>Poblacion Acendente</option>
+                    <option value={['poblacion', true]}>Poblacion Decendente</option>
+                </select>
+            </form>
+            <form>
+                <select name="continente" defaultValue='All'>
+                    <option value="All" >Select continents</option>
+                    <option value="Africa" >Africa</option>
+                    <option value="Americas">Americas</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Europe">Europe</option>
+                    <option value="Oceania">Oceania</option>
+                    <option value="Polar">Polar</option>
+                </select>
+                <select name="actividad" defaultValue='All'>
+                    <option value="All" >Select activities</option>
 
-            {
-                actividades.map((x) => <option value={x.id} key={x.id}>{x.name}</option>)
-            }
-               
-            </select>
-        </form>
+                    {
+                        actividades.map((x) => <option value={x.id} key={x.id}>{x.name}</option>)
+                    }
+
+                </select>
+            </form>
+        </div>
     )
 }
