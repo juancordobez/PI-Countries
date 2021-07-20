@@ -7,6 +7,7 @@ export const ORDEN = 'ORDEN';
 export const FILTER = 'FILTER';
 export const PAGE = 'PAGE';
 export const DETALLE_COUNTRY = 'DETALLE_COUNTRY';
+export const GET_ACTIVIDADES = 'GET_ACTIVIDADES';
 
 
 export function getAllCountrys(){
@@ -86,5 +87,21 @@ export function setPage(payload) {
     return {
         type: PAGE,
         payload
+    }
+}
+
+
+export function getActividades(id){
+    return async function (dispatch) {
+        try{
+            let request = await fetch(`http://localhost:3001/activity`)
+            let data = await request.json()
+            dispatch({
+                type: GET_ACTIVIDADES, 
+                payload: data
+            })
+        }catch(err){
+            console.log(err)
+        }
     }
 }

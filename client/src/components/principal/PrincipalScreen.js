@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllCountrys, getNameCountrys, setPage } from "../../actions";
+import { Filter } from "./Filter";
 
 
 export const PrincipalScreen = () => {
@@ -44,24 +45,9 @@ export const PrincipalScreen = () => {
                 />
                 <input type='submit' value='Buscar' />
             </form>
-            {/* <form>
-                <select name="continentes">
-                    <option value="value1" selected>All continents</option>
-                    <option value="value2" >Value 2</option>
-                    <option value="value3">Value 3</option>
-                </select>
-                <select name="orden">
-                    <option value="value1" selected>Name A-Z</option>
-                    <option value="value2" >Value 2</option>
-                    <option value="value3">Value 3</option>
-                </select>
-                <select name="actividad">
-                    <option value="value1" selected>All activities</option>
-                    <option value="value2" >Value 2</option>
-                    <option value="value3">Value 3</option>
-                </select>
-                <input type='submit' value='Buscar' />
-            </form> */}
+            
+            <Filter />
+
             <div>
                 {
                     currentPage.map(x =>

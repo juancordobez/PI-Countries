@@ -83,10 +83,17 @@ const activityForm = async ( body ) => {
 
     return { actividad, actividades }
 }
+const getActividades = async () => {
+    let actividades = await Actividad.findAll({
+        attributes: [ 'id', 'name' ]
+    });
+    return actividades
+}
 
 module.exports = {
     countryFindAll,
     paisDetalle,
     nameFind,
-    activityForm
+    activityForm,
+    getActividades
 }
