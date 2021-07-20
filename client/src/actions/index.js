@@ -37,23 +37,36 @@ export function getNameCountrys(name){
 }
 
 
-export function orden(valor, decendente){
-    // let x = 1
-    // if(decendente) x = -1
-    // const compare = (a, b) => {
-    //     if (a[valor] > b[valor]) {
-    //       return 1*x;
-    //     }
-    //     if (a[valor] < b[valor]) {
-    //       return -1*x;
-    //     }
-    //     return 0;
-    // }
-    return {
-        type: ORDEN,
-        payload : {valor, decendente}
-    }
-    
+export function ordenarAllCountrys(value){
+    switch (value) {
+        case 'Nombre A-Z':
+            return {
+                type: ORDEN,
+                payload : { prop: 'nombre', decendente: false }
+            }
+        case 'Nombre Z-A':
+            return {
+                type: ORDEN,
+                payload : { prop: 'nombre', decendente: true }
+            }
+        case 'Poblacion Acendente':
+            return {
+                type: ORDEN,
+                payload : { prop: 'poblacion', decendente: false }
+            }
+            
+        case 'Poblacion Decendente':
+            return {
+                type: ORDEN,
+                payload : { prop: 'poblacion', decendente: true }
+            }
+
+        default:
+            return {
+                type: ORDEN,
+                payload : { prop: 'nombre', decendente: false }
+            }
+        }
 }
 
 
@@ -73,17 +86,18 @@ export function getDetalleCountry(id){
 }
 
 
-export function filrer(prop, valor) {
-    console.log(prop, valor)
+export function filrer(valor) {
+    // console.log(valor)
     return {
         type: FILTER,
-        payload: {prop, valor}
+        payload: valor
     }
 }
 
 
 export function setPage(payload) {
     // console.log(payload)
+    payload= payload ? payload : 1
     return {
         type: PAGE,
         payload

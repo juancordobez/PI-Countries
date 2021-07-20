@@ -31,12 +31,12 @@ function rootReducer(state = initialState, { type, payload }) {
         case FILTER:
             return {
                 ...state,
-                allCountrys: state.allCountrys.filter(x => x[payload.prop].includes(payload.valor))
+                allCountrys: state.allCountrys.filter(x => x.continente.includes(payload) || x.actividades.includes(payload))
             }
         case ORDEN:
             let x = 1
             if (payload.decendente) x = -1
-            const compare = (a, b) => a[payload.valor] > b[payload.valor] ? 1 * x : -1 * x
+            const compare = (a, b) => a[payload.prop] > b[payload.prop] ? 1 * x : -1 * x;
             return {
                 ...state,
                 allCountrys: state.allCountrys.sort(compare)

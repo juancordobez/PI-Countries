@@ -18,7 +18,7 @@ export const PrincipalScreen = () => {
     }, [dispatch])
 
     useEffect(() => {
-        dispatch(setPage(1))
+        dispatch(setPage())
     }, [dispatch, allCountrys])
 
     const handleChange = (e) => {
@@ -60,13 +60,7 @@ export const PrincipalScreen = () => {
                         </Link>
                     )
                 }
-                {/* <Link to={`detalle/${'COL'}`}>
-                    <div>
-                        <img src={'https://restcountries.eu/data/col.svg'} alt={`bandera de ${'nombre'}`} />
-                        <h4>{'nombre'}</h4>
-                        <h5>{'continente'}</h5>
-                    </div>
-                </Link> */}
+                
             </div>
 
             PrincipalScreen
