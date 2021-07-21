@@ -6,37 +6,39 @@ import { setPage } from "../../actions";
 export const Pagination = () => {
     const allCountrys = useSelector(state => state.allCountrys)
 
-    const [numPage, setNumPage] = useState({
-        actual: 1,
-        max: allCountrys.length
-    })
+    const [actualPage, setActualPage] = useState(1);
+    const [maxPage, setMaxPage] = useState(Math.ceil(allCountrys.length/10))
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch( setPage(numPage))
+        dispatch( setPage(actualPage))
         
-    }, [numPage, dispatch])
+    }, [actualPage, dispatch])
     
     useEffect(() => {
-        setNumPage({
-            actual: 1,
-            max: allCountrys.length
-        })
-        
+        setActualPage(1)
+        setMaxPage(Math.ceil(allCountrys.length/10))
     }, [allCountrys])
 
-    const next = () => setNumPage(numPage+1)
-    const back = () => setNumPage(numPage-1)
+    const next = () => setActualPage(actualPage+1)
+    const back = () => setActualPage(actualPage-1)
 
 
     return (
         <div>
-            {numPage.actual < 2 ? null : <button onClick={back} >back</button> }
-            {numPage.actual = 1 ? null :<button onClick={(e)=> console.log(e.target.value)} >1</button>}
-            <button onClick={(e)=> console.log(e.target.value)} >{numPage}</button>
-            {numPage.actual = numPage.max ? null :<button onClick={(e)=> console.log(e.target.value)} >{numPage.max}</button>}
 
-            {numPage.actual >= numPage.max ? null : <button onClick={next} >next</button> }
+            {actualPage !== 1 ? <button onClick={() => setActualPage(1) } >1</button> : null}
+
+            {actualPage > 1 ? <button onClick={back} >{'<'}</button> : null }
+            {/* {actualPage < 2 ? null :<button onClick={back} >{actualPage-1}</button>} */}
+
+            <button disabled={true} >{actualPage}</button>
+
+            {/* {actualPage === 1 ? null :<button onClick={next} >{actualPage+1}</button>} */}
+            {actualPage < maxPage ? <button onClick={next} >{'>'}</button> : null}
+            
+            {actualPage !== maxPage ? <button onClick={ ()=> setActualPage(maxPage) } >{maxPage}</button> : null }
+
         </div>
     )
 }
