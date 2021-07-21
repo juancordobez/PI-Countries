@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllCountrys, getNameCountrys, setPage } from "../../actions";
 import { Filter } from "./Filter";
+import { Pagination } from "./Pagination";
 
 
 export const PrincipalScreen = () => {
@@ -63,6 +64,7 @@ export const PrincipalScreen = () => {
                 
             </div>
 
+            <Pagination />
             PrincipalScreen
         </>
     )
