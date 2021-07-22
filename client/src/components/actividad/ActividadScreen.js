@@ -12,13 +12,12 @@ import { getAllCountrys } from "../../actions/index";
 //  Botón/Opción para crear una nueva actividad turística
 
 export const ActividadScreen = () => {
-    
+
     const allCountrys = useSelector(state => state.allCountrys)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch( getAllCountrys() )
-        
+        dispatch(getAllCountrys())
     }, [dispatch])
 
 
@@ -26,36 +25,44 @@ export const ActividadScreen = () => {
         name: '',
         dificultad: 1,
         duracion: 1,
-        temporada: '',
+        temporada: 'Verano',
         imagen: '',
         pais: []
     })
 
+    const [namePais, setNamePais] = useState('')
+
     const handleChange = (e) => {
-        if (e.target.name === 'pais') {
-            console.log(e.target.value);
-            if(state.pais.includes(e.target.value)){
+        let { name, value } = e.target;
+        console.log(value);
+        if (name === 'pais') {
+            if (state.pais.includes(value)) {
                 setState({
                     ...state,
-                    pais: state.pais.filter( x => x !== e.target.value )
+                    pais: state.pais.filter(x => x !== value)
                 })
             } else {
                 setState({
                     ...state,
-                    pais: [ ...state.pais, e.target.value ]
+                    pais: [...state.pais, value]
                 })
             }
         } else {
             setState({
                 ...state,
-                [e.target.name]: e.target.value
+                [name]: value
             })
         }
     }
 
+    const handleChangeNamePais = (e) => {
+        let { value } = e.target
+        let str = value ? value[0].toUpperCase() + value.slice(1) : '';
+        setNamePais(str)
+    }
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(state);
+        console.log('A=>',state);
     }
 
     return (
@@ -73,7 +80,7 @@ export const ActividadScreen = () => {
                             className='imput'
                             onChange={(e) => { handleChange(e) }}
                             value={state.name}
-                            placeholder="Paris city tour"
+                            placeholder="actividad"
                         />
                     </label>
                     <span className={state.name.length > 20 ? 'alert' : 'disabled'}> Maximo 20 caracteres</span>
@@ -84,25 +91,16 @@ export const ActividadScreen = () => {
 
                     <label className='' >
                         Dificultad*:
+                        
+                        <input 
+                            type="range" 
+                            min='1' 
+                            max='5'  
+                            name="dificultad" 
+                            value={state.dificultad} 
+                            onChange={handleChange}
+                        />
 
-                        <select
-                            name="dificultad"
-                            onChange={(e) => { handleChange(e) }}
-                            value={state.dificultad}
-                            className='imput'
-                        >
-
-                            <option value='1'>1 </option>
-
-                            <option value='2'>2 </option>
-
-                            <option value='3'>3 </option>
-
-                            <option value='4'>4 </option>
-
-                            <option value='5'>5 </option>
-
-                        </select>
                     </label>
 
                 </div>
@@ -115,11 +113,13 @@ export const ActividadScreen = () => {
                         <input
                             name="duracion"
                             type="number"
-                            onChange={(e) => { handleChange(e) }}
+                            onChange={handleChange}
                             value={state.duracion}
                             className='input'
-                        // id={styles.lengthBox}
-                        /> Horas
+                            min="1"
+                        /> 
+
+                        Horas
                     </label>
 
                 </div>
@@ -131,12 +131,12 @@ export const ActividadScreen = () => {
 
                         <select
                             name="temporada"
-                            onChange={(e) => { handleChange(e) }}
+                            onChange={handleChange}
                             value={state.temporada}
                             className='imput'
                         >
                             {/* // 'Verano', 'Otoño', 'Invierno', 'Primavera' */}
-                            <option value="Verano">'Verano'</option>
+                            <option value="Verano">Verano</option>
 
                             <option value="Otoño">Otoño</option>
 
@@ -152,24 +152,27 @@ export const ActividadScreen = () => {
                 <div className=''>
 
                     <label className='' >
-                        Paises:
+                        Selecciona paises:
+                    <input
+                        className='input'
+                        onChange={handleChangeNamePais}
+                        value={namePais}
+                        placeholder="Buscar pais"
+                    />
 
-                        <select
-                            name="pais"
-                            multiple
-                            onChange={(e) => { handleChange(e) }}
-                            value={state.pais}
-                            className='imput'
-                            id=''
-                        >
-                            <option value=''>Selecciona paises</option>
-                            {
-                                allCountrys.map((country) =>
-                                    <option key={country.ID} value={country.ID}>{country.nombre}</option>
-                                )
-                            }
-
-                        </select>
+                    <li>
+                        {
+                            allCountrys.filter( x => x.nombre.includes(namePais)).map(x => 
+                                <ul key={x.ID}>
+                                    <p>{x.nombre}</p>
+                                    <button value={x.ID} name="pais" onClick={(e) => { handleChange(e)}}>
+                                        {state.pais.includes(x.ID) ? 'Quitar' : 'Agregar'}
+                                    </button>
+                                </ul>
+                            )
+                        }
+                    </li>
+                        
                     </label>
 
                 </div>
