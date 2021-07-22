@@ -33,10 +33,18 @@ export const ActividadScreen = () => {
 
     const handleChange = (e) => {
         if (e.target.name === 'pais') {
-            setState({
-                ...state,
-                pais: [...state.pais, e.target.value]
-            })
+            console.log(e.target.value);
+            if(state.pais.includes(e.target.value)){
+                setState({
+                    ...state,
+                    pais: state.pais.filter( x => x !== e.target.value )
+                })
+            } else {
+                setState({
+                    ...state,
+                    pais: [ ...state.pais, e.target.value ]
+                })
+            }
         } else {
             setState({
                 ...state,
@@ -47,7 +55,7 @@ export const ActividadScreen = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(e.target.value);
+        console.log(state);
     }
 
     return (
@@ -103,16 +111,16 @@ export const ActividadScreen = () => {
 
                     <label className=''>
                         Duracion*:
-                    </label>
 
-                    <input
-                        name="duracion"
-                        type="number"
-                        onChange={(e) => { handleChange(e) }}
-                        value={state.duracion}
-                        className='imput'
-                    // id={styles.lengthBox}
-                    />
+                        <input
+                            name="duracion"
+                            type="number"
+                            onChange={(e) => { handleChange(e) }}
+                            value={state.duracion}
+                            className='input'
+                        // id={styles.lengthBox}
+                        /> Horas
+                    </label>
 
                 </div>
 
