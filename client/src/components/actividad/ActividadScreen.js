@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from "react-redux";
-import { } from "../../actions/index";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllCountrys } from "../../actions/index";
 // Ruta de creación de actividad turística: debe contener
 
 //  Un formulario controlado con los siguientes campos
@@ -12,6 +12,16 @@ import { } from "../../actions/index";
 //  Botón/Opción para crear una nueva actividad turística
 
 export const ActividadScreen = () => {
+    
+    const allCountrys = useSelector(state => state.allCountrys)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch( getAllCountrys() )
+        
+    }, [dispatch])
+
+
     const [state, setState] = useState({
         name: '',
         dificultad: 1,
@@ -22,16 +32,24 @@ export const ActividadScreen = () => {
     })
 
     const handleChange = (e) => {
-        setState({
-            ...state,
-            [e.target.name]: e.target.value
-        })
+        if (e.target.name === 'pais') {
+            setState({
+                ...state,
+                pais: [...state.pais, e.target.value]
+            })
+        } else {
+            setState({
+                ...state,
+                [e.target.name]: e.target.value
+            })
+        }
     }
 
-    const handleSubmit = () => {
-        
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(e.target.value);
     }
-    
+
     return (
         <div>
 
@@ -93,7 +111,7 @@ export const ActividadScreen = () => {
                         onChange={(e) => { handleChange(e) }}
                         value={state.duracion}
                         className='imput'
-                        // id={styles.lengthBox}
+                    // id={styles.lengthBox}
                     />
 
                 </div>
@@ -101,88 +119,56 @@ export const ActividadScreen = () => {
                 <div className=''>
 
                     <label className='' >
-                    Temporada*:
+                        Temporada*:
 
-                    <select
-                        name="temporada"
-                        onChange={(e) => { handleChange(e) }}
-                        value={state.temporada}
-                        className='imput'
+                        <select
+                            name="temporada"
+                            onChange={(e) => { handleChange(e) }}
+                            value={state.temporada}
+                            className='imput'
                         >
-{/* // 'Verano', 'Otoño', 'Invierno', 'Primavera' */}
-                        <option value="Verano">'Verano'</option>
+                            {/* // 'Verano', 'Otoño', 'Invierno', 'Primavera' */}
+                            <option value="Verano">'Verano'</option>
 
-                        <option value="Otoño">Otoño</option>
+                            <option value="Otoño">Otoño</option>
 
-                        <option value="Invierno">Invierno</option>
+                            <option value="Invierno">Invierno</option>
 
-                        <option value="Primavera">Primavera</option>
+                            <option value="Primavera">Primavera</option>
 
-                    </select>
-                        </label>
+                        </select>
+                    </label>
 
                 </div>
 
-                {/* <div className=''>
+                <div className=''>
 
                     <label className='' >
                         Paises:
 
-                    <select
-                        name="pais"
-                        multiple
-                        onChange={(e) => { handleChange(e) }}
-                        value={countries}
-                        className='imput'
-                        id=''
+                        <select
+                            name="pais"
+                            multiple
+                            onChange={(e) => { handleChange(e) }}
+                            value={state.pais}
+                            className='imput'
+                            id=''
                         >
+                            <option value=''>Selecciona paises</option>
+                            {
+                                allCountrys.map((country) =>
+                                    <option key={country.ID} value={country.ID}>{country.nombre}</option>
+                                )
+                            }
 
-                        {
-                            allCountries?.map((country) =>
-                            <option key={country.name} value={country.name}>{country.name}</option>
-                            )
-                        }
-
-                    </select>
-                        </label>
-
-                </div> */}
-
-                {/* <div className=''>
-
-                    <label className=''>
-                        Image:
+                        </select>
                     </label>
-
-                    <input
-                        name="image"
-                        className='imput'
-                        onChange={(e) => { handleChange(e) }}
-                        value={state.image}
-                        placeholder="INSERT URL"
-                    />
 
                 </div>
 
-                <span className={validateUrl(state.image) ? styles.alert : 'disabled'}> you must enter an image url</span> */}
-
-                {/* <div className={styles.buttonContainer}>
-
-                    <button className='homeButton' onClick={(e) => { clearCountries(e) }}>Reset countries</button>
-
-                    <button className='homeButton' onClick={(e) => { clearAll(e) }}>Reset all</button>
-
-                    <button className={state.description.length > 140 || state.name.length > 20 === true || validateUrl(state.image) ? 'disabled' : 'orangeButton'} type="submit">Add activity</button>
-
-                </div> */}
-
-                {/* {
-                    response.data === "Activity created" ?
-                        <span className={styles.success}>{response.data}</span> :
-                        <span className={styles.error}>{response.data}</span>
-                } */}
-
                 <span className=''>(*) Input obligatorio</span>
+
+                <input type='submit' value='Subir' />
 
             </form>
 
