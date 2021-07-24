@@ -17,14 +17,13 @@ function App() {
       
       <Route path="/">
         <NavBar/>
-        <Switch>
           <Route path="/principal" component={PrincipalScreen} />
           <Route path="/detalle/:idPais" component={DetalleScreen} />
           <Route path="/actividad" component={ActividadScreen} />
           <Route path="/about" component={AboutScreen} />
-          <Redirect to='/' />
-        </Switch>
       </Route>
+      
+      <Redirect to='/' />
 
     </Switch>
   );
