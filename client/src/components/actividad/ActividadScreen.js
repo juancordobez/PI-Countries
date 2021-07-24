@@ -26,7 +26,7 @@ export const ActividadScreen = () => {
         dificultad: 1,
         duracion: 1,
         temporada: 'Verano',
-        imagen: '',
+        // imagen: '',
         pais: []
     })
 
@@ -60,15 +60,20 @@ export const ActividadScreen = () => {
         let str = value ? value[0].toUpperCase() + value.slice(1) : '';
         setNamePais(str)
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault()
+        await fetch('http://localhost:3001/activity', {
+            method: 'post',
+            body:    JSON.stringify(state),
+            headers: { 'Content-Type': 'application/json' },
+        })
         console.log('A=>',state);
     }
 
     return (
         <div>
 
-            <form className='form' onSubmit={(e) => { handleSubmit(e) }}>
+            <form className='form' onSubmit={e => handleSubmit(e)}>
 
                 <div className=''>
 
@@ -78,7 +83,7 @@ export const ActividadScreen = () => {
                         <input
                             name="name"
                             className='imput'
-                            onChange={(e) => { handleChange(e) }}
+                            onChange={handleChange}
                             value={state.name}
                             placeholder="actividad"
                         />
@@ -153,25 +158,25 @@ export const ActividadScreen = () => {
 
                     <label className='' >
                         Selecciona paises:
-                    <input
-                        className='input'
-                        onChange={handleChangeNamePais}
-                        value={namePais}
-                        placeholder="Buscar pais"
-                    />
+                        <input
+                            className='input'
+                            onChange={handleChangeNamePais}
+                            value={namePais}
+                            placeholder="Buscar pais"
+                        />
 
-                    <li>
-                        {
-                            allCountrys.filter( x => x.nombre.includes(namePais)).map(x => 
-                                <ul key={x.ID}>
-                                    <p>{x.nombre}</p>
-                                    <button value={x.ID} name="pais" onClick={(e) => { handleChange(e)}}>
-                                        {state.pais.includes(x.ID) ? 'Quitar' : 'Agregar'}
-                                    </button>
-                                </ul>
-                            )
-                        }
-                    </li>
+                        <li>
+                            {
+                                allCountrys.filter( x => x.nombre.includes(namePais)).map(x => 
+                                    <ul key={x.ID}>
+                                        <span>{x.nombre}</span>
+                                        <button type='button' value={x.ID} name="pais" onClick={handleChange}>
+                                            {state.pais.includes(x.ID) ? 'Quitar' : 'Agregar'}
+                                        </button>
+                                    </ul>
+                                )
+                            }
+                        </li>
                         
                     </label>
 
