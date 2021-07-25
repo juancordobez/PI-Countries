@@ -5,14 +5,16 @@ import {
     FILTER,
     PAGE,
     DETALLE_COUNTRY,
-    GET_ACTIVIDADES
+    GET_ACTIVIDADES,
+    LOADING
 } from '../actions/index'
 
 const initialState = {
     allCountrys: [],
     currentPage: [],
-    detalleCountry: [],
-    actividades: []
+    detalleCountry: {},
+    actividades: [],
+    loading: false
 }
 
 function rootReducer(state = initialState, { type, payload }) {
@@ -55,6 +57,11 @@ function rootReducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 actividades: payload
+            }
+        case LOADING:
+            return {
+                ...state,
+                loading: !state.loading
             }
 
         default:
