@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useParams } from 'react-router-dom';
@@ -25,14 +25,57 @@ export const DetalleScreen = () => {
     // Área (Mostrarla en km2 o millones de km2)
     // Población
     // Actividades turísticas con toda su información asociada
+
     return (
         <div>
             {
                 loading ? 'cargando...' :
+                    <>
+                        <div>
+                            <div>
+                                <img src={detalleCountry.country?.bandera} alt={`bandera de ${detalleCountry.country?.nombre}`} />
+                            </div>
+                            <div>
+                                <h3>{detalleCountry.country?.nombre}</h3>
+                                <h6>{detalleCountry.country?.continente}</h6>
+                            </div>
+                            <div>
+                                <p>Capital: {detalleCountry.country?.capital}</p>
+                                <p>Subregión: {detalleCountry.country?.subregion}</p>
+                                <p>Codigo: {detalleCountry.country?.ID}</p>
+                            </div>
+                            <div>
+                                <p>Area: {detalleCountry.country?.area} km2</p>
+                                <p>Población: {detalleCountry.country?.poblacion}</p>
+                            </div>
+                        </div >
+                        <div>
+                            {/* id(pin):1
+name(pin):"Prueba Actividad"
+dificultad(pin):3
+duracion(pin):2
+temporada(pin):"Invierno"
+imagen(pin):null */}
+                            {
+                                detalleCountry.actividades?.length ?
+                                    detalleCountry.actividades.map(x =>
+                                        <div>
+                                            <img src={x.imagen ? x.imagen : detalleCountry.country?.bandera} alt={`imagen de  ${x.name}`} />
+                                            <h4>{x.name}</h4>
 
-                <p>{console.log(detalleCountry.country?.nombre)}fin</p>
+                                            <p>Dificultad: {x.dificultad}</p>
+                                            <p>Duracion: {x.duracion}</p>
+                                            <p>Temporada: {x.temporada}</p>
+                                        </div>
+                                    )
+                                    : 'No tiene actividades.'
 
+
+
+                            }
+                        </div>
+                    </>
             }
-        </div>
+        </div >
     )
 }
