@@ -11,6 +11,7 @@ import {
 
 const initialState = {
     allCountrys: [],
+    viewCountrys: [],
     currentPage: [],
     detalleCountry: {},
     actividades: [],
@@ -23,17 +24,20 @@ function rootReducer(state = initialState, { type, payload }) {
         case ALL_COUTRYS:
             return {
                 ...state,
-                allCountrys: payload
+                allCountrys: payload,
+                viewCountrys: payload
             }
         case NAME_COUTRYS:
             return {
                 ...state,
-                allCountrys: payload
+                allCountrys: payload,
+                viewCountrys: payload
+
             }
         case FILTER:
             return {
                 ...state,
-                allCountrys: state.allCountrys.filter(x => x.continente.includes(payload) || x.actividades.includes(payload))
+                viewCountrys: state.allCountrys.filter(x => x.continente.includes(payload.continente) || x.actividades.includes(payload.actividad))
             }
         case ORDEN:
             let x = 1
@@ -41,12 +45,12 @@ function rootReducer(state = initialState, { type, payload }) {
             const compare = (a, b) => a[payload.prop] > b[payload.prop] ? 1 * x : -1 * x;
             return {
                 ...state,
-                allCountrys: state.allCountrys.sort(compare)
+                viewCountrys: state.allCountrys.sort(compare)
             }
         case PAGE:
             return {
                 ...state,
-                currentPage: state.allCountrys.slice(10 * payload - 10, 10 * payload)
+                currentPage: state.viewCountrys.slice(10 * payload - 10, 10 * payload)
             }
         case DETALLE_COUNTRY:
             return {

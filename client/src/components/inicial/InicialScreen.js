@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export const InicialScreen = () => {
     return (
         <div>
-            <h2>COUNTRI APP</h2>
+            <h2 className='titulo'>COUNTRI APP</h2>
             <p>
                 A continuación se detallaran los requerimientos
                 mínimos para la aprobación del proyecto individial.
@@ -15,7 +15,7 @@ export const InicialScreen = () => {
                 a su gusto pero tienen que aplicar los conocimientos de estilos
                 vistos en el curso para que quede agradable a la vista.
             </p>
-            <Link to='/principal'>Home</Link>
+            <Link className='btn' to='/principal'>Home</Link>
         </div>
     )
 }

@@ -167,34 +167,34 @@ export const ActividadScreen = () => {
                         {
                             state.pais.length 
                                 ?
-                                    <li>
+                                    <ul>
                                         {
                                             allCountrys.filter(x => state.pais.includes(x.ID)).map(x =>
-                                                <ul key={x.ID}>
+                                                <li key={x.ID}>
                                                     <span>{x.nombre}</span>
                                                     <button type='button' value={x.ID} name="pais" onClick={handleChange}>
                                                         {state.pais.includes(x.ID) ? 'Quitar' : 'Agregar'}
                                                     </button>
-                                                </ul>
+                                                </li>
                                             )
                                         }
-                                    </li>
+                                    </ul>
                                 :
                                     null
                         }
 
-                        <li>
+                        <ul>
                             {
                                 allCountrys.filter(x => x.nombre.includes(namePais) && !state.pais.includes(x.ID)).map(x =>
-                                    <ul key={x.ID}>
+                                    <li key={x.ID}>
                                         <span>{x.nombre}</span>
                                         <button type='button' value={x.ID} name="pais" onClick={handleChange}>
                                             {state.pais.includes(x.ID) ? 'Quitar' : 'Agregar'}
                                         </button>
-                                    </ul>
+                                    </li>
                                 )
                             }
-                        </li>
+                        </ul>
 
                     </label>
 

@@ -4,10 +4,10 @@ import { setPage } from "../../actions";
 
 
 export const Pagination = () => {
-    const allCountrys = useSelector(state => state.allCountrys)
+    const viewCountrys = useSelector(state => state.viewCountrys)
 
     const [actualPage, setActualPage] = useState(1);
-    const [maxPage, setMaxPage] = useState(Math.ceil(allCountrys.length/10))
+    const [maxPage, setMaxPage] = useState(Math.ceil(viewCountrys.length/10))
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -17,8 +17,8 @@ export const Pagination = () => {
     
     useEffect(() => {
         setActualPage(1)
-        setMaxPage(Math.ceil(allCountrys.length/10))
-    }, [allCountrys])
+        setMaxPage(Math.ceil(viewCountrys.length/10))
+    }, [viewCountrys])
 
     const next = () => setActualPage(actualPage+1)
     const back = () => setActualPage(actualPage-1)

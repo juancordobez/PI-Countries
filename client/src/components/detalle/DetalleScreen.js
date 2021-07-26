@@ -50,12 +50,6 @@ export const DetalleScreen = () => {
                             </div>
                         </div >
                         <div>
-                            {/* id(pin):1
-name(pin):"Prueba Actividad"
-dificultad(pin):3
-duracion(pin):2
-temporada(pin):"Invierno"
-imagen(pin):null */}
                             {
                                 detalleCountry.actividades?.length ?
                                     detalleCountry.actividades.map(x =>
