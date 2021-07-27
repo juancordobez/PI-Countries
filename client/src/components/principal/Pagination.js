@@ -27,17 +27,17 @@ export const Pagination = () => {
     return (
         <div>
 
-            {actualPage !== 1 ? <button onClick={() => setActualPage(1) } >1</button> : null}
+            {actualPage !== 1 ? <button className='btn' onClick={() => setActualPage(1) } >1</button> : null}
 
-            {actualPage > 1 ? <button onClick={back} >{'<'}</button> : null }
-            {/* {actualPage < 2 ? null :<button onClick={back} >{actualPage-1}</button>} */}
+            {actualPage > 1 ? <button className='btn' onClick={back} >{'<'}</button> : null }
+            {/* {actualPage < 2 ? null :<button className='btn' onClick={back} >{actualPage-1}</button>} */}
 
-            <button disabled={true} >{actualPage}</button>
+            <button disabled={true} className='btn'>{actualPage}</button>
 
-            {/* {actualPage === 1 ? null :<button onClick={next} >{actualPage+1}</button>} */}
-            {actualPage < maxPage ? <button onClick={next} >{'>'}</button> : null}
+            {/* {actualPage === 1 ? null :<button className='btn' onClick={next} >{actualPage+1}</button>} */}
+            {actualPage < maxPage ? <button className='btn' onClick={next} >{'>'}</button> : null}
             
-            {actualPage !== maxPage ? <button onClick={ ()=> setActualPage(maxPage) } >{maxPage}</button> : null }
+            {actualPage !== maxPage ? <button className='btn' onClick={ ()=> setActualPage(maxPage) } >{maxPage}</button> : null }
 
         </div>
     )

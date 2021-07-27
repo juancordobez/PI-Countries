@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllCountrys, getNameCountrys, setPage } from "../../actions";
+import { CardCountry } from "./CardCountry";
 import { FilterOrden } from "./FilterOrden";
 import { Pagination } from "./Pagination";
 
@@ -45,28 +46,21 @@ export const PrincipalScreen = () => {
                     value={ciudad}
                     onChange={(e) => handleChange(e)}
                 />
-                <input className='btn' type='submit' value='Buscar' />
+                <input className='input' type='submit' value='Buscar' />
             </form>
             
             <FilterOrden />
 
-            <div className='column wrap flex'>
+            <div className='divCars'>
                 {
                     currentPage.map(x =>
-                        <Link to={`detalle/${x.ID}`} key={x.ID}>
-                            <div className='divCard flex'>
-                                <img className='cardImg' src={x.bandera} alt={`bandera de ${x.nombre}`} />
-                                <h4 className='titulo' >{x.nombre}</h4>
-                                <h5 className='span1'>{x.continente}</h5>
-                            </div>
-                        </Link>
+                        <CardCountry country={x} />
                     )
                 }
                 
             </div>
 
             <Pagination />
-            PrincipalScreen
         </>
     )
 }

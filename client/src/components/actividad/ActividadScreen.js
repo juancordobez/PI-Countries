@@ -71,18 +71,18 @@ export const ActividadScreen = () => {
     }
 
     return (
-        <div>
+        <div className=''>
 
-            <form className='form' onSubmit={e => handleSubmit(e)}>
+            <form className='form row' onSubmit={e => handleSubmit(e)}>
 
-                <div className=''>
+                <div className='column'>
 
-                    <label className=''>
+                    <label className='input row'>
                         Nombre de actividad*:
 
                         <input
                             name="name"
-                            className='imput'
+                            className='input'
                             onChange={handleChange}
                             value={state.name}
                             placeholder="actividad"
@@ -90,14 +90,11 @@ export const ActividadScreen = () => {
                     </label>
                     <span className={state.name.length > 20 ? 'alert' : 'disabled'}> Maximo 20 caracteres</span>
 
-                </div>
-
-                <div className=''>
-
-                    <label className='' >
+                    <label className='input row' >
                         Dificultad*:
 
                         <input
+
                             type="range"
                             min='1'
                             max='5'
@@ -108,11 +105,7 @@ export const ActividadScreen = () => {
 
                     </label>
 
-                </div>
-
-                <div className=''>
-
-                    <label className=''>
+                    <label className='input row'>
                         Duracion*:
 
                         <input
@@ -127,18 +120,14 @@ export const ActividadScreen = () => {
                         Horas
                     </label>
 
-                </div>
-
-                <div className=''>
-
-                    <label className='' >
+                    <label className='input row' >
                         Temporada*:
 
                         <select
                             name="temporada"
                             onChange={handleChange}
                             value={state.temporada}
-                            className='imput'
+                            className='input'
                         >
                             {/* // 'Verano', 'Otoño', 'Invierno', 'Primavera' */}
                             <option value="Verano">Verano</option>
@@ -153,11 +142,10 @@ export const ActividadScreen = () => {
                     </label>
 
                 </div>
+                <div className='row wrap'>
 
-                <div className=''>
-
-                    <label className='' >
-                        Selecciona paises:
+                    <label className='input listDiv' >
+                        
                         <input
                             className='input'
                             onChange={handleChangeNamePais}
@@ -165,31 +153,31 @@ export const ActividadScreen = () => {
                             placeholder="Buscar pais"
                         />
                         {
-                            state.pais.length 
+                            state.pais.length
                                 ?
-                                    <ul>
-                                        {
-                                            allCountrys.filter(x => state.pais.includes(x.ID)).map(x =>
-                                                <li key={x.ID}>
-                                                    <span>{x.nombre}</span>
-                                                    <button type='button' value={x.ID} name="pais" onClick={handleChange}>
-                                                        {state.pais.includes(x.ID) ? 'Quitar' : 'Agregar'}
-                                                    </button>
-                                                </li>
-                                            )
-                                        }
-                                    </ul>
+                                <ul className='row wrap input'>
+                                    {
+                                        allCountrys.filter(x => state.pais.includes(x.ID)).map(x =>
+                                            <li key={x.ID} className='row input'>
+                                                <span className='input'>{x.nombre}</span>
+                                                <button className='cardBtn' type='button' value={x.ID} name="pais" onClick={handleChange}>
+                                                    -
+                                                </button>
+                                            </li>
+                                        )
+                                    }
+                                </ul>
                                 :
-                                    null
+                                null
                         }
 
-                        <ul>
+                        <ul className='row wrap'>
                             {
                                 allCountrys.filter(x => x.nombre.includes(namePais) && !state.pais.includes(x.ID)).map(x =>
-                                    <li key={x.ID}>
-                                        <span>{x.nombre}</span>
-                                        <button type='button' value={x.ID} name="pais" onClick={handleChange}>
-                                            {state.pais.includes(x.ID) ? 'Quitar' : 'Agregar'}
+                                    <li key={x.ID} className='row input'>
+                                        <span className='input'>{x.nombre}</span>
+                                        <button className='cardBtn' type='button' value={x.ID} name="pais" onClick={handleChange}>
+                                            +
                                         </button>
                                     </li>
                                 )
@@ -200,9 +188,9 @@ export const ActividadScreen = () => {
 
                 </div>
 
-                <span className=''>(*) Input obligatorio</span>
+                <span className='input span1'>(*) Input obligatorio</span>
 
-                <input type='submit' value='Subir' />
+                <input type='submit' value='Subir' className='btn'/>
 
             </form>
 

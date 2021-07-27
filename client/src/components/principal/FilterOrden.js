@@ -34,12 +34,12 @@ export const FilterOrden = () => {
     } 
 
     return (
-        <div>
+        <div className='column'>
 
             <form className='form' onSubmit={handleSubmit}>
                 <label className='input row'>
                     Orden
-                    <select  name='orden' value={form.orden} onChange={handleChange}>
+                    <select className='input' name='orden' value={form.orden} onChange={handleChange}>
                         <option value='Nombre A-Z' >Nombre A-Z</option>
                         <option value='Nombre Z-A' >Nombre Z-A</option>
                         <option value='Poblacion Acendente'>Poblacion Acendente</option>
@@ -51,7 +51,7 @@ export const FilterOrden = () => {
                     Filtros
                     {/* <label className='input'> */}
 
-                    <select name="continente" value={form.continente} onChange={handleChange}>
+                    <select className='input' name="continente" value={form.continente} onChange={handleChange}>
                         <option value="" >Todos</option>
                         <option value="Africa" >Africa</option>
                         <option value="Americas">Americas</option>
@@ -63,7 +63,7 @@ export const FilterOrden = () => {
                     {/* </label>
                     <label className='input row nowrap'> */}
                         
-                    <select name="actividades" value={form.actividades} onChange={handleChange}>
+                    <select className='input' name="actividades" value={form.actividades} onChange={handleChange}>
                         <option value="" >Todos</option>
 
                         {
@@ -74,7 +74,7 @@ export const FilterOrden = () => {
                     {/* </label> */}
                 </label>
 
-                <input className='btn' type='submit' value='Aplicar'/>
+                <input className='input' type='submit' value='Aplicar'/>
             </form>
         </div>
     )

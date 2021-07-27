@@ -31,38 +31,41 @@ export const DetalleScreen = () => {
             {
                 loading ? 'cargando...' :
                     <>
-                        <div>
-                            <div>
-                                <img src={detalleCountry.country?.bandera} alt={`bandera de ${detalleCountry.country?.nombre}`} />
+                        <div className='row wrap'>
+                            <div className=' divCard column'>
+                                <img className='cardImg' src={detalleCountry.country?.bandera} alt={`bandera de ${detalleCountry.country?.nombre}`} />
                             </div>
-                            <div>
-                                <h3>{detalleCountry.country?.nombre}</h3>
-                                <h6>{detalleCountry.country?.continente}</h6>
+                            <div className='divCard column'>
+                                <h3 className='input'>{detalleCountry.country?.nombre}</h3>
+                                <h6 className='input'>{detalleCountry.country?.continente}</h6>
                             </div>
-                            <div>
-                                <p>Capital: {detalleCountry.country?.capital}</p>
-                                <p>Subregión: {detalleCountry.country?.subregion}</p>
-                                <p>Codigo: {detalleCountry.country?.ID}</p>
+                            <div className='divCard'>
+                                <p className='input'>Capital: {detalleCountry.country?.capital}</p>
+                                <p className='input'>Subregión: {detalleCountry.country?.subregion}</p>
+                                <p className='input'>Codigo: {detalleCountry.country?.ID}</p>
                             </div>
-                            <div>
-                                <p>Area: {detalleCountry.country?.area} km2</p>
-                                <p>Población: {detalleCountry.country?.poblacion}</p>
+                            <div className='divCard'>
+                                <p className='input'>Area: {detalleCountry.country?.area} km2</p>
+                                <p className='input'>Población: {detalleCountry.country?.poblacion}</p>
                             </div>
                         </div >
-                        <div>
+                        <hr />
+                            <p className='input'>Actividades</p>
+                        <div className='divCars'>
+                            
                             {
                                 detalleCountry.actividades?.length ?
                                     detalleCountry.actividades.map(x =>
-                                        <div>
-                                            <img src={x.imagen ? x.imagen : detalleCountry.country?.bandera} alt={`imagen de  ${x.name}`} />
-                                            <h4>{x.name}</h4>
+                                        <div className='column'>
+                                            {/* <img src={x.imagen ? x.imagen : detalleCountry.country?.bandera} alt={`imagen de  ${x.name}`} /> */}
+                                            <h4 className='input'>{x.name}</h4>
 
-                                            <p>Dificultad: {x.dificultad}</p>
-                                            <p>Duracion: {x.duracion}</p>
-                                            <p>Temporada: {x.temporada}</p>
+                                            <p className='input'>Dificultad: {x.dificultad}</p>
+                                            <p className='input'>Duracion: {x.duracion}</p>
+                                            <p className='input'>Temporada: {x.temporada}</p>
                                         </div>
                                     )
-                                    : 'No tiene actividades.'
+                                    : <p className='input'>No tiene actividades.</p>
 
 
 
