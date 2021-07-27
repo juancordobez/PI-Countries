@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { getAllCountrys, getNameCountrys, setPage } from "../../actions";
 import { CardCountry } from "./CardCountry";
 import { FilterOrden } from "./FilterOrden";
@@ -54,7 +53,7 @@ export const PrincipalScreen = () => {
             <div className='divCars'>
                 {
                     currentPage.map(x =>
-                        <CardCountry country={x} />
+                        <CardCountry key={x.ID} country={x} />
                     )
                 }
                 

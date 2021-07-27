@@ -16,10 +16,7 @@ export const ActividadScreen = () => {
     const allCountrys = useSelector(state => state.allCountrys)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getAllCountrys())
-    }, [dispatch])
-
+    
 
     const [state, setState] = useState({
         name: '',
@@ -27,12 +24,69 @@ export const ActividadScreen = () => {
         duracion: 1,
         temporada: 'Verano',
         // imagen: '',
-        pais: []
+        pais: [],
+        
     })
+    
+    const [error, setError] = useState({
+        name: '',
+        dificultad: '',
+        duracion: '',
+        temporada: '',
+        // imagen: '',
+        pais: ''
+    })
+    
 
+
+    useEffect(() => {
+        dispatch(getAllCountrys())
+    }, [dispatch])
+    
+    
+    
     const [namePais, setNamePais] = useState('')
+    
+    const validaciones = e => {
+  
+        switch (e.target.name) {
+            case 'name':
+                setError({
+                    ...error,
+                    name: e.target.value.length < 20 && e.target.value.length > 2 ? '' : 'Debe tener entre 3 y 20 caracteres'
+                })
+                break;
+            case 'dificultad':
+                setError({
+                    ...error,
+                    dificultad: Number(e.target.value) <= 5 && Number(e.target.value) >= 1 ? '' :  'Seleccione dificultad de 1 a 5'
+                })
+                break;
+            case 'duracion':
+                setError({
+                    ...error,
+                    duracion: Number(e.target.value) >= 1 ? '' : 'Seleccione una duracion valida.'
+                })
+                break;
+            case 'temporada':
+                setError({
+                    ...error,
+                    temporada: ['Verano', 'Otoño', 'Invierno', 'Primavera'].includes(e.target.value) ? '' : 'Debe seleccionar una temporada.' 
+                })
+                break;
+            case 'pais':
+                setError({
+                    ...error,
+                    pais: state.pais.length >= 0 ? '' : 'Debe seleccionar un pais o mas.'
+                })
+                break;
 
+            default:
+                break;
+        }
+    }
     const handleChange = (e) => {
+        
         let { name, value } = e.target;
         console.log(value);
         if (name === 'pais') {
@@ -53,6 +107,7 @@ export const ActividadScreen = () => {
                 [name]: value
             })
         }
+        validaciones(e)
     }
 
     const handleChangeNamePais = (e) => {
@@ -62,12 +117,19 @@ export const ActividadScreen = () => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await fetch('http://localhost:3001/activity', {
-            method: 'post',
-            body: JSON.stringify(state),
-            headers: { 'Content-Type': 'application/json' },
-        })
-        console.log('A=>', state);
+        if(
+            state.name.length &&
+            state.dificultad > 0 &&
+            state.duracion> 0 &&
+            ['Verano', 'Otoño', 'Invierno', 'Primavera'].includes( state.temporada) &&
+            state.pais.length > 0
+        ){
+            await fetch('http://localhost:3001/activity', {
+                method: 'post',
+                body: JSON.stringify(state),
+                headers: { 'Content-Type': 'application/json' },
+            })
+        }
     }
 
     return (
@@ -88,7 +150,7 @@ export const ActividadScreen = () => {
                             placeholder="actividad"
                         />
                     </label>
-                    <span className={state.name.length > 20 ? 'alert' : 'disabled'}> Maximo 20 caracteres</span>
+                        <span className='input span1'>{error.name}</span>
 
                     <label className='input row' >
                         Dificultad*:
@@ -104,6 +166,7 @@ export const ActividadScreen = () => {
                         />
 
                     </label>
+                    <span className='input span1'>{error.dificultad}</span>
 
                     <label className='input row'>
                         Duracion*:
@@ -119,6 +182,7 @@ export const ActividadScreen = () => {
 
                         Horas
                     </label>
+                    <span className='input span1'>{error.duracion}</span>
 
                     <label className='input row' >
                         Temporada*:
@@ -140,12 +204,13 @@ export const ActividadScreen = () => {
 
                         </select>
                     </label>
+                    <span className='input span1'>{error.temporada}</span>
 
                 </div>
                 <div className='row wrap'>
 
-                    <label className='input listDiv' >
-                        
+                    <label className=' input listDiv ' >
+
                         <input
                             className='input'
                             onChange={handleChangeNamePais}
@@ -185,12 +250,13 @@ export const ActividadScreen = () => {
                         </ul>
 
                     </label>
+                    <span className='input span1'>{error.pais}</span>
 
                 </div>
 
                 <span className='input span1'>(*) Input obligatorio</span>
 
-                <input type='submit' value='Subir' className='btn'/>
+                <input  type='submit' value='Subir' className='btn' />
 
             </form>
 

@@ -94,7 +94,7 @@ const activityForm = async ( body ) => {
             imagen,
             pais} = body;
     
-        let  actividad = await Actividad.create({
+        const  actividad = await Actividad.create({
             name,
             dificultad,
             duracion,

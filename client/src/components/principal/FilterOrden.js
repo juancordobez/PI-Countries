@@ -12,11 +12,21 @@ export const FilterOrden = () => {
         actividades: ''
     })
     const actividades = useSelector(state => state.actividades);
+    const allCountrys = useSelector(state => state.allCountrys)
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getActividades())
     }, [dispatch])
+
+    useEffect(() => {
+        setForm({
+            
+            orden: 'Nombre A-Z',
+            continente: '',
+            actividades: ''
+        })
+    }, [allCountrys])
 
     const handleChange = e => {
         setForm({

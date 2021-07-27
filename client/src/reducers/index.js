@@ -37,7 +37,11 @@ function rootReducer(state = initialState, { type, payload }) {
         case FILTER:
             return {
                 ...state,
-                viewCountrys: state.allCountrys.filter(x => x.continente.includes(payload.continente) || x.actividades.includes(payload.actividad))
+                viewCountrys: state.allCountrys.filter(x => 
+                    {return (payload.continente.length ? x.continente === payload.continente : true)
+                    &&  
+                    (payload.actividad.length ?  x.actividades.includes(Number(payload.actividad)) : true)}
+                )
             }
         case ORDEN:
             let x = 1
