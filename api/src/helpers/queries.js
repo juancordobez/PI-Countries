@@ -35,7 +35,7 @@ const countryFindAll = async () => {
             });
         }
 
-        await countries[0].addActividad(1)
+        
 
         for (let x of countries) {
             let actividad = await x.getActividads()

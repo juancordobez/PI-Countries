@@ -21,7 +21,7 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const { Country, Actividad } = require('./src/db.js');
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
   server.listen(3001, async () => {
 
     // const country = await Country.create({
@@ -32,12 +32,12 @@ conn.sync({ force: true }).then(() => {
     //   capital: 'capital',
     // })
 
-    await Actividad.create({
-      name: 'Prueba Actividad',
-      dificultad: 3,
-      duracion: 2,
-      temporada: 'Invierno',
-    })
+    // await Actividad.create({
+    //   name: 'Prueba Actividad',
+    //   dificultad: 3,
+    //   duracion: 2,
+    //   temporada: 'Invierno',
+    // })
     
     // country.addActividad(actividad)
 
