@@ -1,14 +1,21 @@
 *{
-  font-family:  Arial, sans-serif;
+  font-family:  Roboto, Arial, sans-serif;
   text-decoration: none;
   font-weight: bold;
   color: white;
   letter-spacing: 0.5px;
+  
+
 }
+
+
 nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
   background-color: #333;
   margin: 0px 0px 20px 0px;
-  padding: 10px;
+  padding: 1px;
   box-shadow: 0px 0px 8px #060128;
   
 
@@ -272,19 +279,35 @@ option{
 }
 .logo {
   
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
+  /* height: 40px;
+  width: 40px; */
+  border-radius: 5px;
+  /* padding: 8px; */
+  padding: 5px 8px 5px 8px;
   box-shadow: 0px 0px 8px #ccc;
-
+  margin: 5px;
+  margin-left: 10px;
 }
 
+.pag{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
+.footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #333;
+  margin: 20px 0px 0px 0px;
+  padding: 20px;
+  box-shadow: 0px 0px 8px #060128;
+}
 
 /* .App {
   text-align: center;
 }
-
+footer
 
 
 .App-header {

@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 
 import './App.css';
 import { NavBar } from "./components/ui/NavBar";
+import { Footer } from "./components/ui/Footer";
 import { InicialScreen } from "./components/inicial/InicialScreen";
 import { PrincipalScreen } from "./components/principal/PrincipalScreen";
 import { DetalleScreen } from "./components/detalle/DetalleScreen";
@@ -21,6 +22,7 @@ function App() {
           <Route path="/detalle/:idPais" component={DetalleScreen} />
           <Route path="/actividad" component={ActividadScreen} />
           <Route path="/about" component={AboutScreen} />
+        <Footer />
       </Route>
       
       <Redirect to='/' />

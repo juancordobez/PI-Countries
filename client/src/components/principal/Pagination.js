@@ -25,7 +25,7 @@ export const Pagination = () => {
 
 
     return (
-        <div>
+        <div className='row pag'>
 
             {actualPage !== 1 ? <button className='btn' onClick={() => setActualPage(1) } >1</button> : null}
 

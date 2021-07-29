@@ -66,9 +66,6 @@ export const DetalleScreen = () => {
                                         </div>
                                     )
                                     : <p className='input'>No tiene actividades.</p>
-
-
-
                             }
                         </div>
                     </>

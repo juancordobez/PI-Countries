@@ -11,7 +11,6 @@ export const PrincipalScreen = () => {
 
     const allCountrys = useSelector(state => state.allCountrys);
     const currentPage = useSelector(state => state.currentPage)
-    const loading = useSelector(state => state.loading)
 
     const [ciudad, setCiudad] = useState('')
     const dispatch = useDispatch();
@@ -23,6 +22,7 @@ export const PrincipalScreen = () => {
 
     useEffect(() => {
         dispatch(setPage())
+        // setCiudad('')
     }, [dispatch, allCountrys])
 
     const handleChange = (e) => {
@@ -59,10 +59,12 @@ export const PrincipalScreen = () => {
 
                     <Spin /> 
                     <div className='divCars subCard'>
-                        {
+                        { allCountrys[0]?.msj ? <p className='input'>{currentPage[0].msj}</p> :
+                            !currentPage.length ? <p className='input'>No hay paises que coincidan.</p> :
                             currentPage.map(x =>
                                 <CardCountry key={x.ID} country={x} />
                             )
+                            
                         }
 
                     </div>
