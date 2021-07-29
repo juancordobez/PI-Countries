@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import { getAllCountrys } from "../../actions/index";
+import { getAllCountrys, setLoading } from "../../actions/index";
+import { Spin } from '../ui/Spin';
 // Ruta de creación de actividad turística: debe contener
 
 //  Un formulario controlado con los siguientes campos
@@ -25,7 +26,6 @@ export const ActividadScreen = () => {
         temporada: 'Verano',
         // imagen: '',
         pais: [],
-        
     })
     
     const [error, setError] = useState({
@@ -124,6 +124,7 @@ export const ActividadScreen = () => {
             ['Verano', 'Otoño', 'Invierno', 'Primavera'].includes( state.temporada) &&
             state.pais.length > 0
         ){
+            dispatch( setLoading())
             await fetch('http://localhost:3001/activity', {
                 method: 'post',
                 body: JSON.stringify(state),
@@ -131,21 +132,23 @@ export const ActividadScreen = () => {
             });
             setState({
                 name: '',
-                dificultad: '',
-                duracion: '',
-                temporada: '',
-                // imagen: '',
-                pais: ''
+                dificultad: 1,
+                duracion: 1,
+                temporada: 'Verano',
+                pais: []
             })
+            dispatch( setLoading())
+
         }
     }
 
     return (
-        <div className=''>
+        <div className='row wrap'>
+            <Spin />
+            <form className='row wrap' onSubmit={handleSubmit}>
 
-            <form className='form row wrap' onSubmit={e => handleSubmit(e)}>
-
-                <div className='column'>
+                <div className='row wrap'>
+        <div className='column'>
 
                     <label className='input row'>
                         Nombre de actividad*:
@@ -156,7 +159,7 @@ export const ActividadScreen = () => {
                             onChange={handleChange}
                             value={state.name}
                             placeholder="actividad"
-                        />
+                            />
                     </label>
                         <span className='input span1'>{error.name}</span>
 
@@ -200,7 +203,7 @@ export const ActividadScreen = () => {
                             onChange={handleChange}
                             value={state.temporada}
                             className='input'
-                        >
+                            >
                             {/* // 'Verano', 'Otoño', 'Invierno', 'Primavera' */}
                             <option value="Verano">Verano</option>
 
@@ -214,9 +217,11 @@ export const ActividadScreen = () => {
                     </label>
                     <span className='input span1'>{error.temporada}</span>
 
-                </div>
-                <div className='row wrap'>
+                    </div>
+                {/* </div>
+                <div className='column wrap'> */}
 
+                
                     <label className=' input listDiv ' >
 
                         <input
@@ -262,9 +267,11 @@ export const ActividadScreen = () => {
 
                 </div>
 
+                <div className='row wrap'>
                 <span className='input span1'>(*) Input obligatorio</span>
 
                 <input  type='submit' value='Subir' className='btn' />
+                </div>
 
             </form>
 

@@ -44,10 +44,10 @@ export const FilterOrden = () => {
     } 
 
     return (
-        <div className='column'>
+        <div className='row wrap'>
 
             <form className='form' onSubmit={handleSubmit}>
-                <label className='input row'>
+                <label className='input row wrap'>
                     Orden
                     <select className='input' name='orden' value={form.orden} onChange={handleChange}>
                         <option value='Nombre A-Z' >Nombre A-Z</option>
@@ -57,7 +57,7 @@ export const FilterOrden = () => {
                     </select>
                 </label>
             
-                <label className='input row'>
+                <label className='input row wrap'>
                     Filtros
                     {/* <label className='input'> */}
 

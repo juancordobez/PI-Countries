@@ -57,8 +57,8 @@ export const PrincipalScreen = () => {
             <FilterOrden />
                 
 
-                    <div className='divCars subCard'>
                     <Spin /> 
+                    <div className='divCars subCard'>
                         {
                             currentPage.map(x =>
                                 <CardCountry key={x.ID} country={x} />

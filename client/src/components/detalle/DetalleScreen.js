@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { useParams } from 'react-router-dom';
 import { getDetalleCountry } from '../../actions';
+import { Spin } from '../ui/Spin';
 
 export const DetalleScreen = () => {
-    // const [detalles, setDetalles] = useState()
     const detalleCountry = useSelector(state => state.detalleCountry)
     const loading = useSelector(state => state.loading)
     const dispatch = useDispatch()
@@ -27,10 +27,10 @@ export const DetalleScreen = () => {
     // Actividades turísticas con toda su información asociada
 
     return (
-        <div>
-            {
-                loading ? 'cargando...' :
+         
                     <>
+
+                            <Spin/>
                         <div className='row wrap'>
                             <div className=' divCard column'>
                                 <img className='cardImg' src={detalleCountry.country?.bandera} alt={`bandera de ${detalleCountry.country?.nombre}`} />
@@ -56,7 +56,7 @@ export const DetalleScreen = () => {
                             {
                                 detalleCountry.actividades?.length ?
                                     detalleCountry.actividades.map(x =>
-                                        <div className='column'>
+                                        <div className='column divCard'>
                                             {/* <img src={x.imagen ? x.imagen : detalleCountry.country?.bandera} alt={`imagen de  ${x.name}`} /> */}
                                             <h4 className='input'>{x.name}</h4>
 
@@ -72,7 +72,6 @@ export const DetalleScreen = () => {
                             }
                         </div>
                     </>
-            }
-        </div >
+          
     )
 }

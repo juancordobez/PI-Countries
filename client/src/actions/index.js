@@ -126,10 +126,9 @@ export function setLoading(payload) {
 }
 
 
-export function getActividades(id) {
+export function getActividades() {
     return async function (dispatch) {
         try {
-            dispatch(setLoading())
 
             let request = await fetch(`http://localhost:3001/activity`)
             let data = await request.json()
@@ -137,7 +136,6 @@ export function getActividades(id) {
                 type: GET_ACTIVIDADES,
                 payload: data
             })
-            dispatch(setLoading())
 
         } catch (err) {
             console.log(err)

@@ -235,7 +235,9 @@ justify-content: space-evenly;
   font-weight: bolder;
 }
 .listDiv{
-  height: 400px;
+  height: 70vh;
+  min-width: 250px;
+  max-width: 40%;
   overflow: scroll;
 }
 
@@ -244,6 +246,12 @@ option{
 }
 
 .spin{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin: 10px;
+  padding: 8px;
+
   border: 10px solid rgba(97, 97, 97, 0.2);
   width: 100px;
   height: 100px;
@@ -260,26 +268,24 @@ option{
   100% {
     transform: rotate(360deg);
   }
+  
 }
 .logo {
+  
   height: 40px;
   width: 40px;
   border-radius: 50%;
   box-shadow: 0px 0px 8px #ccc;
 
 }
+
+
+
 /* .App {
   text-align: center;
 }
 
 
-
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
@@ -296,11 +302,5 @@ option{
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
 } */
