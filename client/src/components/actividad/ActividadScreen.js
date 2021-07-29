@@ -128,6 +128,14 @@ export const ActividadScreen = () => {
                 method: 'post',
                 body: JSON.stringify(state),
                 headers: { 'Content-Type': 'application/json' },
+            });
+            setState({
+                name: '',
+                dificultad: '',
+                duracion: '',
+                temporada: '',
+                // imagen: '',
+                pais: ''
             })
         }
     }
@@ -135,7 +143,7 @@ export const ActividadScreen = () => {
     return (
         <div className=''>
 
-            <form className='form row' onSubmit={e => handleSubmit(e)}>
+            <form className='form row wrap' onSubmit={e => handleSubmit(e)}>
 
                 <div className='column'>
 

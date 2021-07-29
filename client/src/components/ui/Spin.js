@@ -6,9 +6,11 @@ export const Spin = () => {
     return (
         <>
         {
-            loading ? null :
+            loading ?
             <div className='spin'>
-            </div>
+            </div> 
+            :
+            null
         }
         </>
     )
