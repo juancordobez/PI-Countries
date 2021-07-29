@@ -37,7 +37,7 @@ export const Pagination = () => {
             {/* {actualPage === 1 ? null :<button className='btn' onClick={next} >{actualPage+1}</button>} */}
             {actualPage < maxPage ? <button className='btn' onClick={next} >{'>'}</button> : null}
             
-            {actualPage !== maxPage ? <button className='btn' onClick={ ()=> setActualPage(maxPage) } >{maxPage}</button> : null }
+            {actualPage => maxPage ? <button className='btn' onClick={ ()=> setActualPage(maxPage) } >{maxPage}</button> : null }
 
         </div>
     )

@@ -101,7 +101,6 @@ export function getDetalleCountry(id) {
 
 export function filrer(continente, actividad) {
     // console.log(valor)
-    console.log('qqqqq=>>>>>',continente, actividad);
     return {
         type: FILTER,
         payload: {continente, actividad}

@@ -4,12 +4,15 @@ import { getAllCountrys, getNameCountrys, setPage } from "../../actions";
 import { CardCountry } from "./CardCountry";
 import { FilterOrden } from "./FilterOrden";
 import { Pagination } from "./Pagination";
+import { Spin } from "../ui/Spin";
 
 
 export const PrincipalScreen = () => {
 
-    const currentPage = useSelector(state => state.currentPage);
-    const allCountrys = useSelector(state => state.allCountrys)
+    const allCountrys = useSelector(state => state.allCountrys);
+    const currentPage = useSelector(state => state.currentPage)
+    const loading = useSelector(state => state.loading)
+
     const [ciudad, setCiudad] = useState('')
     const dispatch = useDispatch();
 
@@ -33,10 +36,13 @@ export const PrincipalScreen = () => {
     }
 
     return (
+
         <>
+
+
             <form className='form' onSubmit={(e) => handleSubmit(e)}>
                 <input
-                className='input'
+                    className='input'
                     type='text'
                     placeholder='Ciudad...'
                     name='buscar'
@@ -47,19 +53,22 @@ export const PrincipalScreen = () => {
                 />
                 <input className='input' type='submit' value='Buscar' />
             </form>
-            
-            <FilterOrden />
 
-            <div className='divCars'>
-                {
-                    currentPage.map(x =>
-                        <CardCountry key={x.ID} country={x} />
-                    )
-                }
+            <FilterOrden />
                 
-            </div>
+
+                    <div className='divCars subCard'>
+                    <Spin /> 
+                        {
+                            currentPage.map(x =>
+                                <CardCountry key={x.ID} country={x} />
+                            )
+                        }
+
+                    </div>
 
             <Pagination />
+
         </>
     )
 }
