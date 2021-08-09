@@ -12,6 +12,14 @@ export const AboutScreen = () => {
                 <ul>Aprender y practicar el workflow de GIT.</ul>
                 <ul>Usar y practicar testing.</ul>
             </li>
+
+            <h4>Enunciado</h4>
+            <p>La idea general es crear una aplicación en la cual se pueda ver información de distintos paises utilizando la api externa restcountries y a partir de ella poder, entre otras cosas:</p>
+            <li>
+                <ul>Buscar paises</ul>
+                <ul>Filtrarlos / Ordenarlos</ul>
+                <ul>Crear actividades turísticas</ul>
+            </li>
             
         </div>
     )
