@@ -44,14 +44,14 @@ export const PrincipalScreen = () => {
                 <input
                     className='input'
                     type='text'
-                    placeholder='Ciudad...'
+                    placeholder='Country...'
                     name='buscar'
                     id="searchCiudad"
                     autoComplete="off"
                     value={ciudad}
                     onChange={(e) => handleChange(e)}
                 />
-                <input className='input' type='submit' value='Buscar' />
+                <input className='input' type='submit' value='Search' />
             </form>
 
             <FilterOrden />

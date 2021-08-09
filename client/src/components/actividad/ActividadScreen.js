@@ -151,20 +151,20 @@ export const ActividadScreen = () => {
         <div className='column'>
 
                     <label className='input row'>
-                        Nombre de actividad*:
+                        Activity name*:
 
                         <input
                             name="name"
                             className='input'
                             onChange={handleChange}
                             value={state.name}
-                            placeholder="actividad"
-                            />
+                            placeholder="Activity"
+                        />
                     </label>
                         <span className='input span1'>{error.name}</span>
 
                     <label className='input row' >
-                        Dificultad*:
+                        Difficulty*:
 
                         <input
 
@@ -180,7 +180,7 @@ export const ActividadScreen = () => {
                     <span className='input span1'>{error.dificultad}</span>
 
                     <label className='input row'>
-                        Duracion*:
+                        Duration*:
 
                         <input
                             name="duracion"
@@ -191,12 +191,12 @@ export const ActividadScreen = () => {
                             min="1"
                         />
 
-                        Horas
+                        Hours
                     </label>
                     <span className='input span1'>{error.duracion}</span>
 
                     <label className='input row' >
-                        Temporada*:
+                        Season*:
 
                         <select
                             name="temporada"
@@ -205,13 +205,13 @@ export const ActividadScreen = () => {
                             className='input'
                             >
                             {/* // 'Verano', 'Otoño', 'Invierno', 'Primavera' */}
-                            <option value="Verano">Verano</option>
+                            <option value="Verano">Summer</option>
 
-                            <option value="Otoño">Otoño</option>
+                            <option value="Otoño">Autumn</option>
 
-                            <option value="Invierno">Invierno</option>
+                            <option value="Invierno">Winter</option>
 
-                            <option value="Primavera">Primavera</option>
+                            <option value="Primavera">Spring</option>
 
                         </select>
                     </label>
@@ -228,7 +228,7 @@ export const ActividadScreen = () => {
                             className='input'
                             onChange={handleChangeNamePais}
                             value={namePais}
-                            placeholder="Buscar pais"
+                            placeholder="Search country"
                         />
                         {
                             state.pais.length
@@ -268,7 +268,7 @@ export const ActividadScreen = () => {
                 </div>
 
                 <div className='row wrap'>
-                <span className='input span1'>(*) Input obligatorio</span>
+                <span className='input span1'>(*) Mandatory input</span>
 
                 <input  type='submit' value='Subir' className='btn' />
                 </div>

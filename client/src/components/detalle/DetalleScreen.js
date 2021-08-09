@@ -7,7 +7,6 @@ import { Spin } from '../ui/Spin';
 
 export const DetalleScreen = () => {
     const detalleCountry = useSelector(state => state.detalleCountry)
-    const loading = useSelector(state => state.loading)
     const dispatch = useDispatch()
     const { idPais } = useParams();
 
@@ -41,12 +40,12 @@ export const DetalleScreen = () => {
                             </div>
                             <div className='divCard'>
                                 <p className='input'>Capital: {detalleCountry.country?.capital}</p>
-                                <p className='input'>Subregión: {detalleCountry.country?.subregion}</p>
-                                <p className='input'>Codigo: {detalleCountry.country?.ID}</p>
+                                <p className='input'>Subregion: {detalleCountry.country?.subregion}</p>
+                                <p className='input'>Code: {detalleCountry.country?.ID}</p>
                             </div>
                             <div className='divCard'>
                                 <p className='input'>Area: {detalleCountry.country?.area} km2</p>
-                                <p className='input'>Población: {detalleCountry.country?.poblacion}</p>
+                                <p className='input'>Population: {detalleCountry.country?.poblacion}</p>
                             </div>
                         </div >
                         <hr />
@@ -60,12 +59,12 @@ export const DetalleScreen = () => {
                                             {/* <img src={x.imagen ? x.imagen : detalleCountry.country?.bandera} alt={`imagen de  ${x.name}`} /> */}
                                             <h4 className='input'>{x.name}</h4>
 
-                                            <p className='input'>Dificultad: {x.dificultad}</p>
-                                            <p className='input'>Duracion: {x.duracion}</p>
-                                            <p className='input'>Temporada: {x.temporada}</p>
+                                            <p className='input'>Difficulty: {x.dificultad}</p>
+                                            <p className='input'>Duration: {x.duracion}</p>
+                                            <p className='input'>Season: {x.temporada}</p>
                                         </div>
                                     )
-                                    : <p className='input'>No tiene actividades.</p>
+                                    : <p className='input'>It has no activities.</p>
                             }
                         </div>
                     </>

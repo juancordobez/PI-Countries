@@ -1,0 +1,87 @@
+.divCars{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    /* align-items: center;  */
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  }
+  .subCard{
+    margin: 10px;
+    padding: 8px;
+    border-radius: 5px;
+  
+    box-shadow: 0px 0px 8px #ccc;
+  }
+  .divCard{
+      
+    display: flex;
+  
+    flex-direction: column;
+  
+    width: 25%;
+    min-width: 150px;
+    height: auto;
+    align-self: center;
+  
+    margin: 10px;
+    padding: 8px;
+  
+    /* border: 1px solid #ccc; */
+  
+    border-radius: 5px;
+  
+    box-shadow: 0px 0px 8px #ccc;
+    color: #333;
+  }
+  .cardDivBtn{
+    display: grid;
+    justify-content: flex-end;
+  }
+  .cardBtn{
+    /* display: block; */
+    color: #343a40;
+  
+  
+    font-family:  Verdana, sans-serif;
+    font-size: small;
+    font-weight: bold;
+  
+    background-color: white;
+    height: 25px;
+    width: 25px;
+    border: none;
+    border-radius: 15px 15px 15px 15px;
+  
+    box-shadow: 0px 0px 0px #343a40 inset, 0px 0px 3px #343a40;
+  
+  
+    transition:  all 400ms;
+  
+  }
+  
+  .cardBtn:hover{
+    box-shadow: 0px 0px 3px #343a40 inset, 0px 0px 3px #343a40;
+  }
+  
+  .cardBtn:focus{
+    border: none;
+    outline: none;
+  
+  }
+  .cardBtn:focus-visible{
+    outline: none;
+  }
+  
+  .cardImg{
+    background-color: rgb(221, 220, 220);
+    /* border: 1px solid #343a40; */
+  
+    border-radius: 5px;
+  
+    /* box-shadow:  0px 0px 0px #555, 1px 1px 0px #555, 2px 2px 0px #555, 3px 3px 0px #555, 4px 4px 0px #555, 5px 5px 0px #555; */
+  
+    transition: all 500ms;
+    width: 100%;
+  
+  }

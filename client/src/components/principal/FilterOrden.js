@@ -48,21 +48,21 @@ export const FilterOrden = () => {
 
             <form className='form' onSubmit={handleSubmit}>
                 <label className='input row wrap'>
-                    Orden
+                    Order
                     <select className='input' name='orden' value={form.orden} onChange={handleChange}>
-                        <option value='Nombre A-Z' >Nombre A-Z</option>
-                        <option value='Nombre Z-A' >Nombre Z-A</option>
-                        <option value='Poblacion Acendente'>Poblacion Acendente</option>
-                        <option value='Poblacion Decendente'>Poblacion Decendente</option>
+                        <option value='Nombre A-Z' >Name A-Z</option>
+                        <option value='Nombre Z-A' >Name Z-A</option>
+                        <option value='Poblacion Acendente'>Population Acendent</option>
+                        <option value='Poblacion Decendente'>Population Decendent</option>
                     </select>
                 </label>
             
                 <label className='input row wrap'>
-                    Filtros
+                    Filters
                     {/* <label className='input'> */}
 
                     <select className='input' name="continente" value={form.continente} onChange={handleChange}>
-                        <option value="" >Todos</option>
+                        <option value="" >All Continents</option>
                         <option value="Africa" >Africa</option>
                         <option value="Americas">Americas</option>
                         <option value="Asia">Asia</option>
@@ -74,7 +74,7 @@ export const FilterOrden = () => {
                     <label className='input row nowrap'> */}
                         
                     <select className='input' name="actividades" value={form.actividades} onChange={handleChange}>
-                        <option value="" >Todos</option>
+                        <option value="" >All Activitys</option>
 
                         {
                             actividades.map((x) => <option value={x.id} key={x.id}>{x.name}</option>)
@@ -84,7 +84,7 @@ export const FilterOrden = () => {
                     {/* </label> */}
                 </label>
 
-                <input className='input' type='submit' value='Aplicar'/>
+                <input className='input' type='submit' value='Aply'/>
             </form>
         </div>
     )
